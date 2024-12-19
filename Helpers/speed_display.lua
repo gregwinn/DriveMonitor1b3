@@ -4,6 +4,7 @@ function speedDisplay(leftSpacing, topSpaceing, bottomSpacing, speedMPH, engRPS)
 
     -- Show Gear
     gearcolor = COLOR_lightGreen
+    
     if gear < 0 then
         gearcolor = COLOR_errorRed
         gear = "R"
@@ -13,10 +14,12 @@ function speedDisplay(leftSpacing, topSpaceing, bottomSpacing, speedMPH, engRPS)
     elseif gear == 0 then
         gearcolor = COLOR_yellow
         gear = "N"
+    else
+        gear = tostring(gear)
     end
     sColor(COLOR_veryDarkGray)
     screen.drawRect(leftSpacing + 24, topSpaceing - 4, 5, 6)
-    display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, gearcolor, tostring(gear))
+    display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, gearcolor, gear)
 
     sColor(COLOR_lightGreen)
     if speedMPH < 10 then

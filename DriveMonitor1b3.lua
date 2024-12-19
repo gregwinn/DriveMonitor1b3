@@ -32,8 +32,9 @@ do
         simulator:setInputNumber(7, simulator:getSlider(4) * 30)
         simulator:setInputNumber(9, simulator:getSlider(3) * 120)
         simulator:setInputNumber(10, simulator:getSlider(2) * 20)
-        simulator:setInputNumber(11, 0) -- gear
+        simulator:setInputNumber(11, simulator:getSlider(5) * 6) -- gear
         simulator:setInputNumber(12, simulator:getSlider(1))
+        simulator:setInputNumber(18, simulator:getSlider(6))
 
         -- NEW! button/slider options from the UI
         simulator:setInputBool(31, simulator:getIsClicked(1))       -- if button 1 is clicked, provide an ON pulse for input.getBool(31)
@@ -66,9 +67,9 @@ require("Helpers.icon_parkingbreak_display")
 
 -- Displays
 require("Helpers.speed_display")
-require("Helpers.fuel_display")
-require("Helpers.engtemp_display")
-require("Helpers.rps_display")
+--require("Helpers.fuel_display")
+--require("Helpers.engtemp_display")
+--require("Helpers.rps_display")
 
 
 COLOR_darkGreen = {29, 87, 56}
@@ -80,15 +81,20 @@ COLOR_lightGray = {156, 156, 156}
 COLOR_darkGary = {43, 43, 43}
 COLOR_veryDarkGray = {18, 18, 18}
 COLOR_black = {0, 0, 0}
+COLOR_blue = {0, 128, 255}
+COLOR_darkBlue = {0, 38, 77}
 
 -- Inputs
+-- NUMBERS
 -- 7: Speed (m/s)
 -- 8: Fuel
--- 9: Engine Temp
--- 10: Engine RPS
+-- 9: Engine Temp (4/30)
+-- 10: Engine RPS (1/27)
 -- 11: Gear
--- 12: Throttle
+-- 12: Throttle (3/29)
 -- 13: battery
+-- 18: Electric Engine Throttle 
+-- ON/OFF
 -- 14: lights
 -- 15: trailer
 -- 16: parking brake
@@ -102,17 +108,13 @@ local box3_leftMargin = 64
 isClicked = false
 maxThrottle = 100
 ticks = 0
+h = 32
+w = 96
 function onTick()
     ticks = ticks + 1
     isClicked = input.getBool(1)
     touchX = input.getNumber(3)
     touchY = input.getNumber(4)
-
-    h = input.getNumber(2)
-    w = input.getNumber(1)
-
-    topMargin = 4
-    bottomMargin = h - 8
 
     totalFuelAtFull = input.getNumber(17)
 
@@ -123,15 +125,36 @@ function onTick()
     gear = input.getNumber(11)
     throttle = roundTo(input.getNumber(12) * 100, 1)
     battery = round(input.getNumber(13) * 100)
-    headLights = input.getNumber(14)
-    trailer = input.getNumber(15)
-    parkingBrake = input.getNumber(16)
+    headLights = input.getBool(14)
+    trailer = input.getBool(15)
+    parkingBrake = input.getBool(16)
+    electricEngineThrottle = round(input.getNumber(18) * 100)
 end
 
 function onDraw()
+    h = screen.getHeight()
+    w = screen.getWidth()
+
+    topMargin = 4
+    bottomMargin = h - 8
+
     -- Box 1 32x32
     sColor(COLOR_veryDarkGreen)
     screen.drawRectF(0, 0, 32, 32)
+    -- Electric Engine Throttle Output
+    Icon_ElectricBoost(topMargin - 4, 0, COLOR_blue)
+    sColor(COLOR_blue)
+    screen.drawText(7, topMargin - 3, "BOOST")
+    -- Electric Engine Throttle Line
+    sColor(COLOR_darkBlue)
+    screen.drawRectF(0, 7, 32, 3)
+    sColor(COLOR_blue)
+    local electricEngineThrottleLine = round(1 + (electricEngineThrottle - 0) * (33 - 4) / 100)
+    screen.drawLine(1, 8, electricEngineThrottleLine, 8)
+
+    -- Box 1 Lower
+    
+
     sColor(COLOR_darkGreen)
     screen.drawLine(31, 0, 31, 32)
 
@@ -153,7 +176,7 @@ function onDraw()
     display_icon_headlights(topMargin + 8, box3_leftMargin + 13, headLights)
 
     display_icon_battery(topMargin - 2, box3_leftMargin + 22, battery)
-    display_icon_parkingbreak(topMargin + 8, box3_leftMargin + 22, COLOR_errorRed, 1)
+    display_icon_parkingbreak(topMargin + 8, box3_leftMargin + 22, COLOR_errorRed, parkingBrake)
     
     
     -- Throttle Bar

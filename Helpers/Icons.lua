@@ -68,6 +68,16 @@ function Icon_Headlights(topMargin, leftMargin, iconColor)
     DRF(leftMargin + 3, topMargin + 3.5,1,1)
 end
 
+function Icon_ElectricBoost(topMargin, leftMargin, iconColor)
+    sColor(iconColor)
+    DR(leftMargin + 1,topMargin + 2,4,3)
+    DRF(leftMargin + 2,topMargin + 1,1,1)
+    DRF(leftMargin + 4,topMargin + 1,1,1)
+    sColor(COLOR_yellow)
+    DRF(leftMargin + 4,topMargin + 3,1,1)
+    DRF(leftMargin + 2,topMargin + 4,1,1)
+end
+
 function Icon_ParkingBreak(topMargin, leftMargin, iconColor)
     sColor(iconColor)
     DRF(leftMargin + 1,topMargin + 1, 1, 6)

@@ -93,6 +93,21 @@ function Icon_Battery(topMargin, leftMargin, iconColor)
     DRF(leftMargin + 5,topMargin + 1,1,1)
 end
 
+function Icon_Engine(topMargin, leftMargin, iconColor)
+    sColor(iconColor)
+    DRF(leftMargin + 0, topMargin + 2, 1, 3)
+    DRF(leftMargin + 1, topMargin + 3, 1, 1)
+    DRF(leftMargin + 2, topMargin + 2, 1, 3)
+    DRF(leftMargin + 3, topMargin + 2, 3, 1)
+    DRF(leftMargin + 6, topMargin + 2, 1, 3)
+    DRF(leftMargin + 4, topMargin + 1, 1, 1)
+    DRF(leftMargin + 3, topMargin + 0, 3, 1)
+    DRF(leftMargin + 2, topMargin + 5, 1, 1)
+    DRF(leftMargin + 3, topMargin + 6, 1, 1)
+    DRF(leftMargin + 4, topMargin + 6, 1, 1)
+    DRF(leftMargin + 5, topMargin + 5, 1, 1)
+end
+
 function Icon_Generic_Warning(topMargin, leftMargin, iconColor, innerIconColor)
     sColor(iconColor)
     DT(leftMargin + 3,topMargin,leftMargin + 6,topMargin + 6,leftMargin,topMargin + 6)

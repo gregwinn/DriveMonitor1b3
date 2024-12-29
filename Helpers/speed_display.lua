@@ -38,40 +38,20 @@ function display_gear_row_inorder(currentGear, topSpaceing, leftSpacing)
     if (currentGear < 0) then
         display_icon_generic(topSpaceing - 4 , leftSpacing + 13, 1, COLOR_errorRed, "R")
         display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, "N")
-        display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, COLOR_darkGreen, "1")
+        display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, COLOR_darkGreen, "D")
     elseif (currentGear == 0 and parkingBrake) then
         display_icon_generic(topSpaceing - 4 , leftSpacing + 7, 1, COLOR_darkGreen, "R")
         display_icon_generic(topSpaceing - 4 , leftSpacing + 13, 1, COLOR_errorRed, "P")
-        display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, "1")
-        display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, COLOR_darkGreen, "2")
+        display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, "D")
     elseif (currentGear == 0) then
         display_icon_generic(topSpaceing - 4 , leftSpacing + 7, 1, COLOR_darkGreen, "R")
         display_icon_generic(topSpaceing - 4 , leftSpacing + 13, 1, COLOR_yellow, "N")
-        display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, "1")
-        display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, COLOR_darkGreen, "2")
+        display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, "D")
     else
         if currentGear == 1 then
             display_icon_generic(topSpaceing - 4 , leftSpacing + 2, 1, COLOR_darkGreen, "R")
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 7, 1, COLOR_darkGreen, "N") 
-        end
-        if currentGear == 2 then
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 2, 1, COLOR_darkGreen, "N")
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 7, 1, COLOR_darkGreen, currentGear - 1)
-        end
-        
-        if currentGear >= 3 then
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 2, 1, COLOR_darkGreen, currentGear - 2)
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 7, 1, COLOR_darkGreen, currentGear - 1)
-        end
-
-        display_icon_generic(topSpaceing - 4 , leftSpacing + 13, 1, COLOR_lightGreen, currentGear)
-
-        if currentGear <= 4 then
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, currentGear + 1)
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 24, 1, COLOR_darkGreen, currentGear + 2)
-        end
-        if currentGear > 4 and currentGear < maxGear then
-            display_icon_generic(topSpaceing - 4 , leftSpacing + 19, 1, COLOR_darkGreen, currentGear + 1)
+            display_icon_generic(topSpaceing - 4 , leftSpacing + 7, 1, COLOR_darkGreen, "N")
+            display_icon_generic(topSpaceing - 4 , leftSpacing + 13, 1, COLOR_lightGreen, "D")
         end
     end
 end

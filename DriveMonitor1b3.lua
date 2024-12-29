@@ -104,6 +104,7 @@ require("Helpers.speed_display")
 -- 12: Throttle (3/29)
 -- 13: battery
 -- 18: Electric Engine Throttle 
+-- 21: Gas Engine Actual Throttle
 -- ON/OFF
 -- 14: lights
 -- 15: trailer
@@ -143,6 +144,7 @@ function onTick()
     electricEngineThrottle = round(input.getNumber(18) * 100)
     isHybrid = input.getBool(19)
     maxGear = input.getNumber(20)
+    gasENGThrottle = round(input.getNumber(21))
 end
 
 function onDraw()
